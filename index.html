@@ -1143,265 +1143,340 @@
           modal.classList.remove('flex');
         }
   
-        // 6. Galería con las FOTOS REALES de tu galería de Postimages + Lightbox
+        // 6. Galería con TODAS las fotos de Postimages organizadas por categoría + Persistencia en localStorage
         const editorialGalleryItems = [
+          // --- CATEGORÍA: SUELO VIVO Y BIOINSUMOS ---
           {
-            id: 'gal-1',
-            category: 'suelo',
-            categoryLabel: 'Suelo Vivo y Bioinsumos',
-            title: 'Prácticas de Suelo y Bioinsumos en Finca',
-            desc: 'Registro fotográfico de las labores regenerativas aplicadas en las fincas asociadas de Naranjo.',
-            imageUrl: 'https://i.postimg.cc/FzBsqkMp/web-2robles-naranjo-priscillamora012.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr2: 'https://i.postimg.cc/T27whBKM/web-2robles-naranjo-priscillamora082.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr3: 'https://i.postimg.cc/Y2n9jTvB/web-2robles-naranjo-priscillamora124.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr4: 'https://i.postimg.cc/fW2Lk1Vh/web-2robles-naranjo-priscillamora125.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr5: 'https://i.postimg.cc/J76ntSsL/web-2robles-naranjo-priscillamora142.jpg', // Reemplaza con tu enlace de Postimages
-          },
-          {
-            id: 'gal-2',
-            category: 'sombra',
-            categoryLabel: 'Café Bajo Sombra',
-            title: 'Sistema Agroforestal y Cobertura',
-            desc: 'Manejo de sombra y biodiversidad en los cafetales de altura.',
-            imageUrl: 'https://i.postimg.cc/VsG652Jz/web-2robles-naranjo-priscillamora164.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr2: 'https://i.postimg.cc/nVRzMNXc/web-2robles-naranjo-priscillamora169.jpg.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr3: 'https://i.postimg.cc/ZY7R0XW5/web-2robles-naranjo-priscillamora186.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr4: 'https://i.postimg.cc/ZY7R0XWR/web-2robles-naranjo-priscillamora198.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr5: 'https://i.postimg.cc/RCsFq2W6/web-2robles-naranjo-priscillamora211.jpg', // Reemplaza con tu enlace de Postimages
-          },
-          {
-            id: 'gal-3',
-            category: 'escuela',
-            categoryLabel: 'Escuela de Campo',
-            title: 'Sesiones de Trabajo Colectivo',
-            desc: 'Aprendizaje práctico y participación activa de los productores.',
-            imageUrl: 'https://i.postimg.cc/MZPTXgnf/web-2robles-naranjo-priscillamora217.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr2: 'https://i.postimg.cc/9X8MzsDq/web-2robles-naranjo-priscillamora234.jpg.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr3: 'https://i.postimg.cc/3rSRWzkp/web-2robles-naranjo-priscillamora403.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr4: 'https://i.postimg.cc/jqg5CBDy/web-2robles-naranjo-priscillamora414.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr5: 'https://i.postimg.cc/9X8MzsDG/web-2robles-naranjo-priscillamora465.jpg', // Reemplaza con tu enlace de Postimages
-          },
-          {
-            id: 'gal-4',
-            category: 'fincas',
-            categoryLabel: 'Fincas de Naranjo',
-            title: 'Paisaje Cafetalero en Naranjo',
-            desc: 'Vista panorámica de las parcelas productivas en transición regenerativa.',
-            imageUrl: 'https://i.postimg.cc/2jc63g1d/web-2robles-naranjo-priscillamora467.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr2: 'https://i.postimg.cc/Gh4pDzD4/web-2robles-naranjo-priscillamora475.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr3: 'https://i.postimg.cc/Pf3xN0Cz/web-2robles-naranjo-priscillamora476.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr4: 'https://i.postimg.cc/TYKPbQbL/web-2robles-naranjo-priscillamora488.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr5: 'https://i.postimg.cc/pXmdjkj5/web-2robles-naranjo-priscillamora537.jpg', // Reemplaza con tu enlace de Postimages
-            imageUr6: 'https://i.postimg.cc/9FDf919q/web-2robles-naranjo-priscillamora538.jpg', // Reemplaza con tu enlace de Postimages
+              id: 'suelo-1',
+              category: 'suelo',
+              categoryLabel: 'Suelo Vivo y Bioinsumos',
+              title: 'Prácticas de Suelo y Bioinsumos en Finca',
+              desc: 'Registro fotográfico de las labores regenerativas aplicadas en las fincas asociadas de Naranjo.',
+              imageUrl: 'https://i.postimg.cc/FzBsqkMp/web-2robles-naranjo-priscillamora012.jpg'
+            },
+            {
+              id: 'suelo-2',
+              category: 'suelo',
+              categoryLabel: 'Suelo Vivo y Bioinsumos',
+              title: 'Preparación de Biofermentos y Microorganismos',
+              desc: 'Elaboración artesanal de insumos biológicos hechos directamente en la finca.',
+              imageUrl: 'https://i.postimg.cc/T27whBKM/web-2robles-naranjo-priscillamora082.jpg'
+            },
+            {
+              id: 'suelo-3',
+              category: 'suelo',
+              categoryLabel: 'Suelo Vivo y Bioinsumos',
+              title: 'Regeneración Biológica del Suelo',
+              desc: 'Fortalecimiento de la microbiota y estructura orgánica del suelo cafetalero.',
+              imageUrl: 'https://i.postimg.cc/Y2n9jTvB/web-2robles-naranjo-priscillamora124.jpg'
+            },
+            {
+              id: 'suelo-4',
+              category: 'suelo',
+              categoryLabel: 'Suelo Vivo y Bioinsumos',
+              title: 'Manejo Sostenible de Nutrición Edáfica',
+              desc: 'Aplicación de bioinsumos locales para reducir la dependencia de agroquímicos.',
+              imageUrl: 'https://i.postimg.cc/fW2Lk1Vh/web-2robles-naranjo-priscillamora125.jpg'
+            },
+            {
+              id: 'suelo-5',
+              category: 'suelo',
+              categoryLabel: 'Suelo Vivo y Bioinsumos',
+              title: 'Cobertura Viva y Salud del Cafetal',
+              desc: 'Protección contra la erosión y conservación de humedad en los lotes productivos.',
+              imageUrl: 'https://i.postimg.cc/J76ntSsL/web-2robles-naranjo-priscillamora142.jpg'
+            },
+          
+            // --- CATEGORÍA: CAFÉ BAJO SOMBRA ---
+            {
+              id: 'sombra-1',
+              category: 'sombra',
+              categoryLabel: 'Café Bajo Sombra',
+              title: 'Sistema Agroforestal y Cobertura',
+              desc: 'Manejo de sombra diversificada y biodiversidad en los cafetales de altura.',
+              imageUrl: 'https://i.postimg.cc/VsG652Jz/web-2robles-naranjo-priscillamora164.jpg'
+            },
+            {
+              id: 'sombra-2',
+              category: 'sombra',
+              categoryLabel: 'Café Bajo Sombra',
+              title: 'Regulación Microclimática bajo Dosel',
+              desc: 'Árboles nativos y de servicio protegiendo el cultivo frente a extremos climáticos.',
+              imageUrl: 'https://i.postimg.cc/nVRzMNXc/web-2robles-naranjo-priscillamora169.jpg'
+            },
+            {
+              id: 'sombra-3',
+              category: 'sombra',
+              categoryLabel: 'Café Bajo Sombra',
+              title: 'Biodiversidad y Corredores Biológicos',
+              desc: 'Refugio para aves, polinizadores y fauna benéfica en las fincas de Naranjo.',
+              imageUrl: 'https://i.postimg.cc/ZY7R0XW5/web-2robles-naranjo-priscillamora186.jpg'
+            },
+            {
+              id: 'sombra-4',
+              category: 'sombra',
+              categoryLabel: 'Café Bajo Sombra',
+              title: 'Equilibrio Ecológico en el Cafetal',
+              desc: 'Integración armoniosa entre producción de café de calidad y bosque.',
+              imageUrl: 'https://i.postimg.cc/ZY7R0XWR/web-2robles-naranjo-priscillamora198.jpg'
+            },
+            {
+              id: 'sombra-5',
+              category: 'sombra',
+              categoryLabel: 'Café Bajo Sombra',
+              title: 'Cosecha y Desarrollo bajo Sombra',
+              desc: 'Maduración lenta y uniforme del grano gracias al manejo agroforestal.',
+              imageUrl: 'https://i.postimg.cc/RCsFq2W6/web-2robles-naranjo-priscillamora211.jpg'
+            },
+          
+            // --- CATEGORÍA: ESCUELA DE CAMPO ---
+            {
+              id: 'escuela-1',
+              category: 'escuela',
+              categoryLabel: 'Escuela de Campo',
+              title: 'Sesiones de Trabajo Colectivo',
+              desc: 'Aprendizaje práctico y participación activa de los productores y productoras.',
+              imageUrl: 'https://i.postimg.cc/MZPTXgnf/web-2robles-naranjo-priscillamora217.jpg'
+            },
+            {
+              id: 'escuela-2',
+              category: 'escuela',
+              categoryLabel: 'Escuela de Campo',
+              title: 'Intercambio de Saberes Finca por Finca',
+              desc: 'Evaluación conjunta de resultados en terreno entre miembros de NARECAFÉ.',
+              imageUrl: 'https://i.postimg.cc/9X8MzsDq/web-2robles-naranjo-priscillamora234.jpg'
+            },
+            {
+              id: 'escuela-3',
+              category: 'escuela',
+              categoryLabel: 'Escuela de Campo',
+              title: 'Capacitación Técnica Participativa',
+              desc: 'Aprender haciendo: fortalecimiento de capacidades locales en caficultura regenerativa.',
+              imageUrl: 'https://i.postimg.cc/3rSRWzkp/web-2robles-naranjo-priscillamora403.jpg'
+            },
+            {
+              id: 'escuela-4',
+              category: 'escuela',
+              categoryLabel: 'Escuela de Campo',
+              title: 'Diagnóstico Comunitario en Campo',
+              desc: 'Observación directa de indicadores de salud del suelo y vigor de las plantas.',
+              imageUrl: 'https://i.postimg.cc/jqg5CBDy/web-2robles-naranjo-priscillamora414.jpg'
+            },
+            {
+              id: 'escuela-5',
+              category: 'escuela',
+              categoryLabel: 'Escuela de Campo',
+              title: 'Comunidad de Práctica Territorial',
+              desc: 'Productores unidos compartiendo experiencias para una transición gradual exitosa.',
+              imageUrl: 'https://i.postimg.cc/9X8MzsDG/web-2robles-naranjo-priscillamora465.jpg'
+            },
+          
+            // --- CATEGORÍA: FINCAS DE NARANJO ---
+            {
+              id: 'fincas-1',
+              category: 'fincas',
+              categoryLabel: 'Fincas de Naranjo',
+              title: 'Paisaje Cafetalero en Naranjo',
+              desc: 'Vista panorámica de las parcelas productivas en transición regenerativa.',
+              imageUrl: 'https://i.postimg.cc/2jc63g1d/web-2robles-naranjo-priscillamora467.jpg'
+            },
+            {
+              id: 'fincas-2',
+              category: 'fincas',
+              categoryLabel: 'Fincas de Naranjo',
+              title: 'Fincas Familiares de Altura',
+              desc: 'Tradición cafetalera naranjeña comprometida con la sostenibilidad ambiental.',
+              imageUrl: 'https://i.postimg.cc/Gh4pDzD4/web-2robles-naranjo-priscillamora475.jpg'
+            },
+            {
+              id: 'fincas-3',
+              category: 'fincas',
+              categoryLabel: 'Fincas de Naranjo',
+              title: 'Entorno Natural y Producción',
+              desc: 'Conservación de recursos hídricos y paisajes vivos en Alajuela, Costa Rica.',
+              imageUrl: 'https://i.postimg.cc/Pf3xN0Cz/web-2robles-naranjo-priscillamora476.jpg'
+            },
+            {
+              id: 'fincas-4',
+              category: 'fincas',
+              categoryLabel: 'Fincas de Naranjo',
+              title: 'Territorio Regenerativo NARECAFÉ',
+              desc: 'Cada finca asociada aporta a la transformación sostenible del cantón de Naranjo.',
+              imageUrl: 'https://i.postimg.cc/TYKPbQbL/web-2robles-naranjo-priscillamora488.jpg'
+            },
+            {
+              id: 'fincas-5',
+              category: 'fincas',
+              categoryLabel: 'Fincas de Naranjo',
+              title: 'Cultivo con Propósito',
+              desc: 'Cuidando la tierra y fortaleciendo la economía familiar generacional.',
+              imageUrl: 'https://i.postimg.cc/pXmdjkj5/web-2robles-naranjo-priscillamora537.jpg'
+            },
+            {
+              id: 'fincas-6',
+              category: 'fincas',
+              categoryLabel: 'Fincas de Naranjo',
+              title: 'Identidad Cafetalera de Naranjo',
+              desc: 'Registro del archivo visual oficial de la Asociación Naranjeña Regenerativa de Café.',
+              imageUrl: 'https://i.postimg.cc/9FDf919q/web-2robles-naranjo-priscillamora538.jpg'
+            }
+          ];
+          
+          const STORAGE_KEY = 'narecafe_saved_gallery_v1';
+          let uploadedGalleryItems = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+          let currentFilter = 'todos';
+          
+          const categoryNamesMap = {
+            suelo: 'Suelo Vivo y Bioinsumos',
+            sombra: 'Café Bajo Sombra',
+            escuela: 'Escuela de Campo',
+            fincas: 'Fincas de Naranjo'
+          };
+          
+          function updateFeedbackBanner() {
+            const feedback = document.getElementById('upload-feedback');
+            if (uploadedGalleryItems.length > 0) {
+              document.getElementById('upload-feedback-text').textContent =
+                `Tienes ${uploadedGalleryItems.length} fotografía(s) guardada(s) en este navegador.`;
+              feedback.classList.remove('hidden');
+            } else {
+              feedback.classList.add('hidden');
+            }
           }
-        ];
-  
-        let uploadedGalleryItems = [];
-        let currentFilter = 'todos';
-  
-        function renderGallery() {
-          const grid = document.getElementById('gallery-grid');
-          const allItems = [...uploadedGalleryItems, ...editorialGalleryItems];
-          const filtered = currentFilter === 'todos'
-            ? allItems
-            : allItems.filter(item => item.category === currentFilter);
-  
-          grid.innerHTML = filtered.map((item) => `
-            <article onclick="openLightbox('${item.id}')" class="group cursor-pointer bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-nare-blue/40 transition-all flex flex-col">
-              <div class="relative h-52 w-full overflow-hidden bg-nare-offwhite">
-                <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <span class="absolute top-3.5 left-3.5 text-[11px] font-bold px-3 py-1 rounded-full bg-white/95 text-nare-dark shadow-sm">
-                  ${item.categoryLabel}
-                </span>
-                <span class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-nare-dark/75 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
-                </span>
-              </div>
-              <div class="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 class="font-slab font-bold text-lg text-nare-dark group-hover:text-nare-blue transition">${item.title}</h3>
-                  <p class="text-sm text-nare-slate font-light mt-2 leading-relaxed line-clamp-3">${item.desc}</p>
+          
+          function renderGallery() {
+            const grid = document.getElementById('gallery-grid');
+            const allItems = [...uploadedGalleryItems, ...editorialGalleryItems];
+            const filtered = currentFilter === 'todos'
+              ? allItems
+              : allItems.filter(item => item.category === currentFilter);
+          
+            grid.innerHTML = filtered.map((item) => `
+              <article onclick="openLightbox('${item.id}')" class="group cursor-pointer bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-nare-blue/40 transition-all flex flex-col">
+                <div class="relative h-52 w-full overflow-hidden bg-nare-offwhite">
+                  <img src="${item.imageUrl}" alt="${item.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <span class="absolute top-3.5 left-3.5 text-[11px] font-bold px-3 py-1 rounded-full bg-white/95 text-nare-dark shadow-sm">
+                    ${item.categoryLabel}
+                  </span>
+                  <span class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-nare-dark/75 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                  </span>
                 </div>
-                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-nare-slate">
-                  <span>Naranjo, Alajuela</span>
-                  <span class="font-medium text-nare-green">Ampliar ficha →</span>
+                <div class="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 class="font-slab font-bold text-lg text-nare-dark group-hover:text-nare-blue transition">${item.title}</h3>
+                    <p class="text-sm text-nare-slate font-light mt-2 leading-relaxed line-clamp-3">${item.desc}</p>
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-nare-slate">
+                    <span>Naranjo, Alajuela</span>
+                    <span class="font-medium text-nare-green">Ampliar ficha →</span>
+                  </div>
                 </div>
-              </div>
-            </article>
-          `).join('');
-        }
-        renderGallery();
-  
-        // Filtros de galería
-        document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
-          btn.addEventListener('click', () => {
-            currentFilter = btn.dataset.filter;
-            document.querySelectorAll('.gallery-filter-btn').forEach(b => {
-              b.classList.remove('bg-nare-blue', 'text-white', 'shadow-sm');
-              b.classList.add('bg-white', 'text-nare-dark', 'border', 'border-slate-200');
+              </article>
+            `).join('');
+          }
+          
+          updateFeedbackBanner();
+          renderGallery();
+          
+          // Filtros de galería
+          document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              currentFilter = btn.dataset.filter;
+              document.querySelectorAll('.gallery-filter-btn').forEach(b => {
+                b.classList.remove('bg-nare-blue', 'text-white', 'shadow-sm');
+                b.classList.add('bg-white', 'text-nare-dark', 'border', 'border-slate-200');
+              });
+              btn.classList.add('bg-nare-blue', 'text-white', 'shadow-sm');
+              btn.classList.remove('bg-white', 'text-nare-dark', 'border', 'border-slate-200');
+              renderGallery();
             });
-            btn.classList.add('bg-nare-blue', 'text-white', 'shadow-sm');
-            btn.classList.remove('bg-white', 'text-nare-dark', 'border', 'border-slate-200');
+          });
+          
+          // Función para comprimir imagen y convertirla a Base64 persistente
+          function compressImageToBase64(file, maxWidth = 900, quality = 0.78) {
+            return new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onload = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                  const canvas = document.createElement('canvas');
+                  let width = img.width;
+                  let height = img.height;
+          
+                  if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                  }
+          
+                  canvas.width = width;
+                  canvas.height = height;
+                  const ctx = canvas.getContext('2d');
+                  ctx.drawImage(img, 0, 0, width, height);
+                  resolve(canvas.toDataURL('image/jpeg', quality));
+                };
+                img.onerror = reject;
+                img.src = event.target.result;
+              };
+              reader.onerror = reject;
+              reader.readAsDataURL(file);
+            });
+          }
+          
+          // Carga y guardado persistente en localStorage
+          const photoInput = document.getElementById('photo-upload-input');
+          photoInput.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files || []);
+            if (!files.length) return;
+          
+            const targetCategory = currentFilter === 'todos' ? 'fincas' : currentFilter;
+            const targetCategoryLabel = categoryNamesMap[targetCategory];
+          
+            for (let i = 0; i < files.length; i++) {
+              const file = files[i];
+              try {
+                const base64Url = await compressImageToBase64(file);
+                uploadedGalleryItems.unshift({
+                  id: `uploaded-${Date.now()}-${i}`,
+                  category: targetCategory,
+                  categoryLabel: targetCategoryLabel,
+                  title: file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
+                  desc: 'Fotografía agregada a la galería local de NARECAFÉ.',
+                  imageUrl: base64Url
+                });
+              } catch (err) {
+                console.error('Error procesando imagen:', err);
+              }
+            }
+          
+            try {
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(uploadedGalleryItems));
+            } catch (storageError) {
+              alert('Se alcanzó el límite de almacenamiento del navegador. Elimina algunas fotos guardadas para agregar más.');
+            }
+          
+            photoInput.value = '';
+            updateFeedbackBanner();
             renderGallery();
           });
-        });
-  
-        // Carga local de vista previa de fotos
-        const photoInput = document.getElementById('photo-upload-input');
-        photoInput.addEventListener('change', (e) => {
-          const files = Array.from(e.target.files || []);
-          if (!files.length) return;
-  
-          files.forEach((file, i) => {
-            const objectUrl = URL.createObjectURL(file);
-            uploadedGalleryItems.unshift({
-              id: `uploaded-${Date.now()}-${i}`,
-              category: currentFilter === 'todos' ? 'fincas' : currentFilter,
-              categoryLabel: 'Vista previa local',
-              title: file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
-              desc: 'Fotografía cargada en modo vista previa desde el dispositivo del equipo NARECAFÉ.',
-              imageUrl: objectUrl
-            });
-          });
-  
-          const feedback = document.getElementById('upload-feedback');
-          document.getElementById('upload-feedback-text').textContent = `Se agregaron ${files.length} fotografía(s) en modo vista previa local a la galería.`;
-          feedback.classList.remove('hidden');
-          renderGallery();
-        });
-  
-        function resetUploadedPhotos() {
-          uploadedGalleryItems.forEach(item => {
-            if (item.imageUrl) URL.revokeObjectURL(item.imageUrl);
-          });
-          uploadedGalleryItems = [];
-          photoInput.value = '';
-          document.getElementById('upload-feedback').classList.add('hidden');
-          renderGallery();
-        }
-  
-        // Lightbox
-        function openLightbox(itemId) {
-          const allItems = [...uploadedGalleryItems, ...editorialGalleryItems];
-          const item = allItems.find(i => i.id === itemId);
-          if (!item) return;
-  
-          const visualBox = document.getElementById('lb-visual');
-          visualBox.innerHTML = `<img src="${item.imageUrl}" alt="${item.title}" class="max-h-[440px] w-auto object-contain" />`;
-  
-          document.getElementById('lb-category').textContent = item.categoryLabel;
-          document.getElementById('lb-title').textContent = item.title;
-          document.getElementById('lb-desc').textContent = item.desc;
-  
-          const lb = document.getElementById('lightbox-modal');
-          lb.classList.remove('hidden');
-          lb.classList.add('flex');
-        }
-  
-        function closeLightbox() {
-          const lb = document.getElementById('lightbox-modal');
-          lb.classList.add('hidden');
-          lb.classList.remove('flex');
-        }
-  
-        // Cerrar modales con tecla Escape o clic fuera
-        window.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            closeServiceModal();
-            closeLightbox();
+          
+          function resetUploadedPhotos() {
+            uploadedGalleryItems = [];
+            localStorage.removeItem(STORAGE_KEY);
+            photoInput.value = '';
+            updateFeedbackBanner();
+            renderGallery();
           }
-        });
-        document.getElementById('service-modal').addEventListener('click', (e) => {
-          if (e.target.id === 'service-modal') closeServiceModal();
-        });
-        document.getElementById('lightbox-modal').addEventListener('click', (e) => {
-          if (e.target.id === 'lightbox-modal') closeLightbox();
-        });
-  
-        // 7. Selector de Perfil y Formulario de Contacto
-        const profilePlaceholders = {
-          'Productor/a de café': {
-            orgLabel: 'Nombre de tu finca o distrito en Naranjo',
-            orgPlaceholder: 'Ej. Finca La Esperanza, San Juan de Naranjo',
-            msgPlaceholder: 'Me gustaría participar en las visitas finca por finca y aprender sobre elaboración de bioinsumos...'
-          },
-          'Institución / Aliado': {
-            orgLabel: 'Institución, organización o empresa',
-            orgPlaceholder: 'Ej. Cooperación Técnica / Universidad / Centro de Investigación',
-            msgPlaceholder: 'Nos interesa explorar una alianza o proyecto conjunto con NARECAFÉ en Naranjo...'
-          },
-          'Interesado/a en café regenerativo': {
-            orgLabel: 'Empresa, cafetería o ciudad (opcional)',
-            orgPlaceholder: 'Ej. Tostaduría / Consumidor en Costa Rica',
-            msgPlaceholder: 'Quisiera conocer más sobre el café regenerativo que producen las fincas asociadas...'
-          }
-        };
-  
-        document.querySelectorAll('.profile-btn').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const profile = btn.dataset.profile;
-            document.getElementById('selected-profile').value = profile;
-  
-            document.querySelectorAll('.profile-btn').forEach(b => {
-              b.classList.remove('active', 'border-nare-green', 'bg-nare-green/10');
-              b.classList.add('border-slate-200', 'bg-white');
-            });
-            btn.classList.add('active', 'border-nare-green', 'bg-nare-green/10');
-            btn.classList.remove('border-slate-200', 'bg-white');
-  
-            const cfg = profilePlaceholders[profile];
-            if (cfg) {
-              document.getElementById('org-label').textContent = cfg.orgLabel;
-              document.getElementById('contact-org').placeholder = cfg.orgPlaceholder;
-              document.getElementById('contact-message').placeholder = cfg.msgPlaceholder;
-            }
-          });
-        });
-  
-        const contactForm = document.getElementById('contact-form');
-        const statusBox = document.getElementById('form-status-box');
-  
-        function showStatus(type, message) {
-          statusBox.classList.remove('hidden', 'bg-red-50', 'text-red-800', 'border-red-200', 'bg-nare-green/10', 'text-nare-dark', 'border-nare-green/30');
-          statusBox.classList.add('border');
-          if (type === 'error') {
-            statusBox.classList.add('bg-red-50', 'text-red-800', 'border-red-200');
-          } else {
-            statusBox.classList.add('bg-nare-green/10', 'text-nare-dark', 'border-nare-green/30');
-          }
-          statusBox.textContent = message;
-        }
-  
-        contactForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const name = document.getElementById('contact-name').value.trim();
-          const email = document.getElementById('contact-email').value.trim();
-          const message = document.getElementById('contact-message').value.trim();
-          const profile = document.getElementById('selected-profile').value;
-  
-          if (!name || !email || !message) {
-            showStatus('error', 'Por favor completa tu nombre, correo electrónico y mensaje para que podamos responderte.');
-            return;
-          }
-  
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            showStatus('error', 'Por favor ingresa un correo electrónico válido.');
-            return;
-          }
-  
-          showStatus('success', `¡Gracias, ${name}! Hemos registrado tu consulta como "${profile}". Muy pronto nos pondremos en contacto contigo desde NARECAFÉ (narecafe@gmail.com).`);
-          contactForm.reset();
-        });
-  
-        document.getElementById('open-mailto-btn').addEventListener('click', () => {
-          const name = document.getElementById('contact-name').value.trim() || 'Consulta desde web';
-          const profile = document.getElementById('selected-profile').value;
-          const org = document.getElementById('contact-org').value.trim();
-          const msg = document.getElementById('contact-message').value.trim();
-  
-          const subject = encodeURIComponent(`[Web NARECAFÉ] ${profile} - ${name}`);
-          const body = encodeURIComponent(`Perfil: ${profile}\nNombre: ${name}\nFinca/Organización: ${org || 'No especificada'}\n\nMensaje:\n${msg}`);
-          window.location.href = `mailto:narecafe@gmail.com?subject=${subject}&body=${body}`;
-        });
-      </script>
+          
+          // Lightbox
+          function openLightbox(itemId) {
+            const allItems = [...uploadedGalleryItems, ...editorialGalleryItems];
+            const item = allItems.find(i => i.id === itemId);
+            if (!item) return;
+          
+            const visualBox = document.getElementById('lb-visual');
+            visualBox.innerHTML = `<img src="${item.imageUrl}" alt="${item.title}" class="max-h-[440px] w-auto object-contain" />`;
+          
+            document.getElementById('lb-category').textContent = item.categoryLabel;
+            document.getElementById('lb-title').textContent = item.title;
+            document.getElementById
