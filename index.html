@@ -961,516 +961,430 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- JAVASCRIPT INTERACTIVO                                                -->
+  <!-- JAVASCRIPT INTERACTIVO CON GALERÍA DE FOTOS REALES                    -->
   <!-- ===================================================================== -->
-  <script>
-    // 1. Año actual en el footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-
-    // 2. Menú móvil hamburguesa
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const iconOpen = document.getElementById('icon-menu-open');
-    const iconClose = document.getElementById('icon-menu-close');
-
-    mobileMenuBtn.addEventListener('click', () => {
-      const isHidden = mobileMenu.classList.contains('hidden');
-      mobileMenu.classList.toggle('hidden');
-      iconOpen.classList.toggle('hidden', !isHidden);
-      iconClose.classList.toggle('hidden', isHidden);
-      mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
-    });
-
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        iconOpen.classList.remove('hidden');
-        iconClose.classList.add('hidden');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // 3. Scroll Spy en barra de navegación
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-      const scrollPos = window.scrollY + 140;
-      sections.forEach(sec => {
-        if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
-          const id = sec.getAttribute('id');
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      <script>
+        // 1. Año actual en el footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+  
+        // 2. Menú móvil hamburguesa
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-menu-open');
+        const iconClose = document.getElementById('icon-menu-close');
+  
+        mobileMenuBtn.addEventListener('click', () => {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden');
+          iconOpen.classList.toggle('hidden', !isHidden);
+          iconClose.classList.toggle('hidden', isHidden);
+          mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
+        });
+  
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
           });
-        }
-      });
-    });
-
-    // 4. Línea de tiempo interactiva (Sección Sobre Nosotros)
-    const timelineData = [
-      {
-        badge: 'Etapa 01 · Punto de partida',
-        color: '#1281aa',
-        title: 'Escuela de Campo financiada por cooperación europea',
-        desc: 'Pequeños y medianos caficultores de Naranjo nos reunimos en sesiones prácticas de campo para observar nuestros suelos, diagnosticar problemáticas reales y aprender haciendo bajo un enfoque participativo.',
-        highlights: ['Diagnóstico participativo de suelos', 'Aprendizaje práctico entre productores y productoras', 'Acompañamiento técnico con cooperación europea']
-      },
-      {
-        badge: 'Etapa 02 · Autonomía en finca',
-        color: '#249a89',
-        title: 'Microorganismos de montaña y bioinsumos propios',
-        desc: 'Recolectamos microorganismos benéficos de los bosques locales de Naranjo y desarrollamos biofertilizantes y bioles en nuestras propias fincas, validando dosis y resultados sin comprometer el rendimiento.',
-        highlights: ['Captura y reproducción de Microorganismos de Montaña (MM)', 'Biofermentos minerales y enmiendas orgánicas', 'Reducción gradual de costos e insumos químicos']
-      },
-      {
-        badge: 'Etapa 03 · Identidad colectiva',
-        color: '#845339',
-        title: 'Nacimiento de NARECAFÉ como asociación',
-        desc: 'Al finalizar la Escuela de Campo decidimos formalizar nuestra unión como Asociación Naranjeña Regenerativa de Café, consolidando nuestra identidad de marca, gobernanza y propósito común.',
-        highlights: ['Constitución formal de la asociación en Naranjo', 'Desarrollo de Guía de Marca Visual y estrategia', 'Comunidad activa de intercambio finca por finca']
-      },
-      {
-        badge: 'Etapa 04 · Proyección futura',
-        color: '#fbb040',
-        title: 'Transformación del paisaje productivo de Naranjo',
-        desc: 'Hoy trabajamos para sumar más fincas vecinas, documentar nuestros avances regenerativos y conectar un café de alto valor ambiental y humano con aliados e instituciones.',
-        highlights: ['Expansión de sistemas agroforestales bajo sombra', 'Trazabilidad regenerativa y alianzas estratégicas', 'Resiliencia climática y economía familiar fortalecida']
-      }
-    ];
-
-    function selectTimeline(index) {
-      const item = timelineData[index];
-      const container = document.getElementById('tl-content');
-
-      document.querySelectorAll('.tl-btn').forEach((btn, idx) => {
-        if (idx === index) {
-          btn.classList.remove('border-slate-200', 'bg-white');
-          btn.classList.add('border-nare-blue', 'bg-nare-blue/5', 'shadow-sm');
-        } else {
-          btn.classList.add('border-slate-200', 'bg-white');
-          btn.classList.remove('border-nare-blue', 'bg-nare-blue/5', 'shadow-sm');
-        }
-      });
-
-      container.innerHTML = `
-        <div class="tab-panel">
-          <span class="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2.5" style="background-color:${item.color}18; color:${item.color === '#fbb040' ? '#845339' : item.color};">
-            ${item.badge}
-          </span>
-          <h4 class="font-slab font-bold text-lg sm:text-xl text-nare-dark">${item.title}</h4>
-          <p class="text-sm sm:text-base text-nare-slate font-light mt-2 leading-relaxed">${item.desc}</p>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 pt-4 border-t border-slate-200/70">
-            ${item.highlights.map(h => `
-              <div class="flex items-start gap-2 text-xs sm:text-sm text-nare-dark">
-                <svg class="w-4 h-4 text-nare-green shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                <span>${h}</span>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      `;
-    }
-    selectTimeline(0);
-
-    // 5. Modal de Servicios / Pilares
-    const servicesDetail = [
-      {
-        badge: 'Pilar 01 · Suelo Vivo',
-        title: 'Suelo Vivo y Microbiología en Finca',
-        desc: 'El suelo es el corazón de la finca cafetalera. En NARECAFÉ promovemos la regeneración biológica del suelo mediante insumos elaborados con recursos locales.',
-        items: [
-          'Recolección y activación de Microorganismos de Montaña (MM sólidos y líquidos).',
-          'Elaboración de biofertilizantes enriquecidos con minerales para nutrición foliar y edáfica.',
-          'Coberturas vegetales vivas y manejo de rastrojos para evitar la erosión en laderas de Naranjo.',
-          'Monitoreo visual y práctico de estructura, humedad y actividad biológica del suelo.'
-        ]
-      },
-      {
-        badge: 'Pilar 02 · Biodiversidad',
-        title: 'Café Bajo Sombra y Corredores Biológicos',
-        desc: 'Integramos árboles de sombra diversificados que protegen el cafetal frente a extremos climáticos y convierten cada finca en un refugio de vida.',
-        items: [
-          'Selección y poda estratégica de árboles de sombra nativa y especies de servicio.',
-          'Protección de polinizadores clave como el colibrí y abejas nativas.',
-          'Conservación de microcuencas y zonas de recarga hídrica en fincas cafetaleras.',
-          'Secuestro de carbono y regulación térmica del microclima del cafetal.'
-        ]
-      },
-      {
-        badge: 'Pilar 03 · Comunidad de Práctica',
-        title: 'Escuela de Campo e Intercambio Finca por Finca',
-        desc: 'Nuestro aprendizaje es horizontal: cada finca es un laboratorio vivo donde compartimos aciertos, aprendizajes y métricas reales.',
-        items: [
-          'Visitas periódicas entre fincas asociadas para evaluar prácticas en terreno.',
-          'Talleres prácticos abiertos a caficultores de Naranjo y cantones vecinos.',
-          'Planificación de transición gradual cuidando la rentabilidad y flujo de caja familiar.',
-          'Registro fotográfico y técnico continuo de la evolución de los lotes.'
-        ]
-      },
-      {
-        badge: 'Pilar 04 · Alianzas',
-        title: 'Alianzas Institucionales y Trazabilidad Regenerativa',
-        desc: 'Construimos puentes entre las familias productoras y organizaciones que buscan impulsar una caficultura con impacto positivo medible.',
-        items: [
-          'Articulación con cooperación internacional, academia e instituciones agropecuarias.',
-          'Documentación de prácticas regenerativas para mercados diferenciados.',
-          'Visitas técnicas guiadas para aliados, investigadores y tostadores interesados.',
-          'Construcción colectiva de propuestas de desarrollo rural sostenible.'
-        ]
-      }
-    ];
-
-    function openServiceModal(idx) {
-      const s = servicesDetail[idx];
-      document.getElementById('modal-badge').textContent = s.badge;
-      document.getElementById('modal-title').textContent = s.title;
-      document.getElementById('modal-desc').textContent = s.desc;
-      document.getElementById('modal-list').innerHTML = s.items.map(item => `
-        <li class="flex items-start gap-2.5">
-          <span class="w-5 h-5 rounded-full bg-nare-green/15 text-nare-green flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
-          <span>${item}</span>
-        </li>
-      `).join('');
-
-      const modal = document.getElementById('service-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeServiceModal() {
-      const modal = document.getElementById('service-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    // 6. Galería Editorial + Carga Local de Previsualización + Lightbox
-    const editorialGalleryItems = [
-      {
-        id: 'gal-1',
-        category: 'suelo',
-        categoryLabel: 'Suelo Vivo y Bioinsumos',
-        title: 'Activación de Microorganismos de Montaña',
-        desc: 'Preparación artesanal de inóculos microbiológicos nativos recolectados en bosques de altura de Naranjo para revitalizar la biología del suelo.',
-        accent: '#845339',
-        svgArt: `
-          <svg viewBox="0 0 400 240" class="w-full h-full">
-            <rect width="400" height="240" fill="#f5efe9"/>
-            <circle cx="200" cy="115" r="72" fill="#845339" fill-opacity="0.12"/>
-            <path d="M135,155 Q200,135 265,155 L252,185 Q200,175 148,185 Z" fill="#845339"/>
-            <circle cx="175" cy="110" r="14" fill="#249a89" fill-opacity="0.8"/>
-            <circle cx="205" cy="92" r="10" fill="#1281aa" fill-opacity="0.8"/>
-            <circle cx="228" cy="116" r="12" fill="#fbb040" fill-opacity="0.9"/>
-            <circle cx="192" cy="126" r="8" fill="#249a89"/>
-            <path d="M200,150 L200,118 M200,132 L182,120 M200,126 L218,116" stroke="#249a89" stroke-width="3" stroke-linecap="round"/>
-          </svg>`
-      },
-      {
-        id: 'gal-2',
-        category: 'sombra',
-        categoryLabel: 'Café Bajo Sombra',
-        title: 'Dosel Agroforestal y Polinizadores',
-        desc: 'Integración de árboles de sombra nativa que protegen el cultivo, conservan la humedad y sostienen poblaciones de colibríes y aves locales.',
-        accent: '#249a89',
-        svgArt: `
-          <svg viewBox="0 0 400 240" class="w-full h-full">
-            <rect width="400" height="240" fill="#eef7f5"/>
-            <circle cx="310" cy="58" r="24" fill="#fbb040" fill-opacity="0.7"/>
-            <path d="M90,195 L90,95" stroke="#845339" stroke-width="8" stroke-linecap="round"/>
-            <circle cx="90" cy="82" r="46" fill="#249a89" fill-opacity="0.85"/>
-            <circle cx="126" cy="95" r="32" fill="#1281aa" fill-opacity="0.75"/>
-            <circle cx="58" cy="98" r="28" fill="#249a89"/>
-            <path d="M235,95 C252,85 270,88 282,95 C270,104 254,104 235,95 Z" fill="#1281aa"/>
-            <path d="M250,92 L238,76 L260,88 Z" fill="#1281aa"/>
-            <path d="M0,195 Q200,180 400,195 L400,240 L0,240 Z" fill="#845339" fill-opacity="0.85"/>
-          </svg>`
-      },
-      {
-        id: 'gal-3',
-        category: 'escuela',
-        categoryLabel: 'Escuela de Campo',
-        title: 'Sesiones de Aprendizaje entre Pares',
-        desc: 'Encuentros prácticos en las parcelas de nuestros asociados donde compartimos resultados de análisis de suelo y fórmulas de biofermentos.',
-        accent: '#1281aa',
-        svgArt: `
-          <svg viewBox="0 0 400 240" class="w-full h-full">
-            <rect width="400" height="240" fill="#eef5f8"/>
-            <rect x="85" y="55" width="230" height="130" rx="18" fill="#ffffff" stroke="#1281aa" stroke-width="3"/>
-            <circle cx="145" cy="105" r="18" fill="#1281aa"/>
-            <circle cx="200" cy="98" r="20" fill="#249a89"/>
-            <circle cx="255" cy="105" r="18" fill="#845339"/>
-            <path d="M118,152 C118,136 172,136 172,152" fill="#1281aa" fill-opacity="0.8"/>
-            <path d="M170,152 C170,133 230,133 230,152" fill="#249a89" fill-opacity="0.9"/>
-            <path d="M228,152 C228,136 282,136 282,152" fill="#845339" fill-opacity="0.8"/>
-          </svg>`
-      },
-      {
-        id: 'gal-4',
-        category: 'fincas',
-        categoryLabel: 'Fincas de Naranjo',
-        title: 'Cafetales de Altura en Naranjo, Alajuela',
-        desc: 'Lotes en transición regenerativa ubicados en las laderas de Naranjo, combinando conservación de suelos y café de alta calidad.',
-        accent: '#fbb040',
-        svgArt: `
-          <svg viewBox="0 0 400 240" class="w-full h-full">
-            <rect width="400" height="240" fill="#fdf8ef"/>
-            <path d="M0,165 L110,75 L225,155 L315,65 L400,130 L400,240 L0,240 Z" fill="#1281aa" fill-opacity="0.25"/>
-            <path d="M0,180 L145,105 L270,175 L400,115 L400,240 L0,240 Z" fill="#249a89" fill-opacity="0.45"/>
-            <path d="M0,192 Q200,175 400,192 L400,240 L0,240 Z" fill="#845339"/>
-            <circle cx="80" cy="60" r="20" fill="#fbb040"/>
-          </svg>`
-      },
-      {
-        id: 'gal-5',
-        category: 'suelo',
-        categoryLabel: 'Suelo Vivo y Bioinsumos',
-        title: 'Biofábricas Comunitarias en Finca',
-        desc: 'Infraestructura sencilla y replicable en cada finca para fermentación anaeróbica de bioles minerales y reproducción de microorganismos.',
-        accent: '#845339',
-        svgArt: `
-          <svg viewBox="0 0 400 240" class="w-full h-full">
-            <rect width="400" height="240" fill="#f5efe9"/>
-            <rect x="125" y="75" width="60" height="95" rx="10" fill="#1281aa"/>
-            <rect x="215" y="75" width="60" height="95" rx="10" fill="#249a89"/>
-            <rect x="120" y="68" width="70" height="12" rx="4" fill="#1b1d21"/>
-            <rect x="210" y="68" width="70" height="12" rx="4" fill="#1b1d21"/>
-            <path d="M155,68 C155,45 180,45 180,58" stroke="#fbb040" stroke-width="3" fill="none"/>
-            <path d="M245,68 C245,45 270,45 270,58" stroke="#fbb040" stroke-width="3" fill="none"/>
-          </svg>`
-      },
-      {
-        id: 'gal-6',
-        category: 'sombra',
-        categoryLabel: 'Café Bajo Sombra',
-        title: 'Grano Maduro y Cosecha Selectiva',
-        desc: 'El equilibrio nutricional del suelo vivo se refleja en plantas vigorosas y cerezas de café maduras de excelente perfil en taza.',
-        accent: '#249a89',
-        svgArt: `
-          <svg viewBox="0 0 400 240" class="w-full h-full">
-            <rect width="400" height="240" fill="#eef7f5"/>
-            <path d="M110,165 Q200,115 295,85" stroke="#845339" stroke-width="6" stroke-linecap="round" fill="none"/>
-            <ellipse cx="165" cy="112" rx="26" ry="13" transform="rotate(-32 165 112)" fill="#249a89"/>
-            <ellipse cx="230" cy="88" rx="26" ry="13" transform="rotate(-28 230 88)" fill="#249a89"/>
-            <ellipse cx="215" cy="136" rx="24" ry="12" transform="rotate(24 215 136)" fill="#1281aa"/>
-            <circle cx="185" cy="134" r="10" fill="#845339"/>
-            <circle cx="248" cy="108" r="10" fill="#fbb040"/>
-            <circle cx="268" cy="102" r="9" fill="#845339"/>
-          </svg>`
-      }
-    ];
-
-    let uploadedGalleryItems = [];
-    let currentFilter = 'todos';
-
-    function renderGallery() {
-      const grid = document.getElementById('gallery-grid');
-      const allItems = [...uploadedGalleryItems, ...editorialGalleryItems];
-      const filtered = currentFilter === 'todos'
-        ? allItems
-        : allItems.filter(item => item.category === currentFilter);
-
-      grid.innerHTML = filtered.map((item, idx) => `
-        <article onclick="openLightbox('${item.id}')" class="group cursor-pointer bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-nare-blue/40 transition-all flex flex-col">
-          <div class="relative h-52 w-full overflow-hidden bg-nare-offwhite">
-            ${item.imageUrl
-              ? `<img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />`
-              : `<div class="w-full h-full group-hover:scale-105 transition-transform duration-500">${item.svgArt}</div>`
+        });
+  
+        // 3. Scroll Spy en barra de navegación
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+  
+        window.addEventListener('scroll', () => {
+          const scrollPos = window.scrollY + 140;
+          sections.forEach(sec => {
+            if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+              const id = sec.getAttribute('id');
+              navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+              });
             }
-            <span class="absolute top-3.5 left-3.5 text-[11px] font-bold px-3 py-1 rounded-full bg-white/95 text-nare-dark shadow-sm">
-              ${item.categoryLabel}
-            </span>
-            <span class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-nare-dark/75 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
-            </span>
-          </div>
-          <div class="p-6 flex-1 flex flex-col justify-between">
-            <div>
-              <h3 class="font-slab font-bold text-lg text-nare-dark group-hover:text-nare-blue transition">${item.title}</h3>
-              <p class="text-sm text-nare-slate font-light mt-2 leading-relaxed line-clamp-3">${item.desc}</p>
+          });
+        });
+  
+        // 4. Línea de tiempo interactiva (Sección Sobre Nosotros)
+        const timelineData = [
+          {
+            badge: 'Etapa 01 · Punto de partida',
+            color: '#1281aa',
+            title: 'Escuela de Campo financiada por cooperación europea',
+            desc: 'Pequeños y medianos caficultores de Naranjo nos reunimos en sesiones prácticas de campo para observar nuestros suelos, diagnosticar problemáticas reales y aprender haciendo bajo un enfoque participativo.',
+            highlights: ['Diagnóstico participativo de suelos', 'Aprendizaje práctico entre productores y productoras', 'Acompañamiento técnico con cooperación europea']
+          },
+          {
+            badge: 'Etapa 02 · Autonomía en finca',
+            color: '#249a89',
+            title: 'Microorganismos de montaña y bioinsumos propios',
+            desc: 'Recolectamos microorganismos benéficos de los bosques locales de Naranjo y desarrollamos biofertilizantes y bioles en nuestras propias fincas, validando dosis y resultados sin comprometer el rendimiento.',
+            highlights: ['Captura y reproducción de Microorganismos de Montaña (MM)', 'Biofermentos minerales y enmiendas orgánicas', 'Reducción gradual de costos e insumos químicos']
+          },
+          {
+            badge: 'Etapa 03 · Identidad colectiva',
+            color: '#845339',
+            title: 'Nacimiento de NARECAFÉ como asociación',
+            desc: 'Al finalizar la Escuela de Campo decidimos formalizar nuestra unión como Asociación Naranjeña Regenerativa de Café, consolidando nuestra identidad de marca, gobernanza y propósito común.',
+            highlights: ['Constitución formal de la asociación en Naranjo', 'Desarrollo de Guía de Marca Visual y estrategia', 'Comunidad activa de intercambio finca por finca']
+          },
+          {
+            badge: 'Etapa 04 · Proyección futura',
+            color: '#fbb040',
+            title: 'Transformación del paisaje productivo de Naranjo',
+            desc: 'Hoy trabajamos para sumar más fincas vecinas, documentar nuestros avances regenerativos y conectar un café de alto valor ambiental y humano con aliados e instituciones.',
+            highlights: ['Expansión de sistemas agroforestales bajo sombra', 'Trazabilidad regenerativa y alianzas estratégicas', 'Resiliencia climática y economía familiar fortalecida']
+          }
+        ];
+  
+        function selectTimeline(index) {
+          const item = timelineData[index];
+          const container = document.getElementById('tl-content');
+  
+          document.querySelectorAll('.tl-btn').forEach((btn, idx) => {
+            if (idx === index) {
+              btn.classList.remove('border-slate-200', 'bg-white');
+              btn.classList.add('border-nare-blue', 'bg-nare-blue/5', 'shadow-sm');
+            } else {
+              btn.classList.add('border-slate-200', 'bg-white');
+              btn.classList.remove('border-nare-blue', 'bg-nare-blue/5', 'shadow-sm');
+            }
+          });
+  
+          container.innerHTML = `
+            <div class="tab-panel">
+              <span class="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2.5" style="background-color:${item.color}18; color:${item.color === '#fbb040' ? '#845339' : item.color};">
+                ${item.badge}
+              </span>
+              <h4 class="font-slab font-bold text-lg sm:text-xl text-nare-dark">${item.title}</h4>
+              <p class="text-sm sm:text-base text-nare-slate font-light mt-2 leading-relaxed">${item.desc}</p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4 pt-4 border-t border-slate-200/70">
+                ${item.highlights.map(h => `
+                  <div class="flex items-start gap-2 text-xs sm:text-sm text-nare-dark">
+                    <svg class="w-4 h-4 text-nare-green shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                    <span>${h}</span>
+                  </div>
+                `).join('')}
+              </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-nare-slate">
-              <span>Naranjo, Alajuela</span>
-              <span class="font-medium text-nare-green">Ampliar ficha →</span>
-            </div>
-          </div>
-        </article>
-      `).join('');
-    }
-    renderGallery();
-
-    // Filtros de galería
-    document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        currentFilter = btn.dataset.filter;
-        document.querySelectorAll('.gallery-filter-btn').forEach(b => {
-          b.classList.remove('bg-nare-blue', 'text-white', 'shadow-sm');
-          b.classList.add('bg-white', 'text-nare-dark', 'border', 'border-slate-200');
-        });
-        btn.classList.add('bg-nare-blue', 'text-white', 'shadow-sm');
-        btn.classList.remove('bg-white', 'text-nare-dark', 'border', 'border-slate-200');
-        renderGallery();
-      });
-    });
-
-    // Carga local de vista previa de fotos del equipo NARECAFÉ
-    const photoInput = document.getElementById('photo-upload-input');
-    photoInput.addEventListener('change', (e) => {
-      const files = Array.from(e.target.files || []);
-      if (!files.length) return;
-
-      files.forEach((file, i) => {
-        const objectUrl = URL.createObjectURL(file);
-        uploadedGalleryItems.unshift({
-          id: `uploaded-${Date.now()}-${i}`,
-          category: currentFilter === 'todos' ? 'fincas' : currentFilter,
-          categoryLabel: 'Vista previa local',
-          title: file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
-          desc: 'Fotografía cargada en modo vista previa desde el dispositivo del equipo NARECAFÉ.',
-          imageUrl: objectUrl
-        });
-      });
-
-      const feedback = document.getElementById('upload-feedback');
-      document.getElementById('upload-feedback-text').textContent = `Se agregaron ${files.length} fotografía(s) en modo vista previa local a la galería.`;
-      feedback.classList.remove('hidden');
-      renderGallery();
-    });
-
-    function resetUploadedPhotos() {
-      uploadedGalleryItems.forEach(item => {
-        if (item.imageUrl) URL.revokeObjectURL(item.imageUrl);
-      });
-      uploadedGalleryItems = [];
-      photoInput.value = '';
-      document.getElementById('upload-feedback').classList.add('hidden');
-      renderGallery();
-    }
-
-    // Lightbox
-    function openLightbox(itemId) {
-      const allItems = [...uploadedGalleryItems, ...editorialGalleryItems];
-      const item = allItems.find(i => i.id === itemId);
-      if (!item) return;
-
-      const visualBox = document.getElementById('lb-visual');
-      visualBox.innerHTML = item.imageUrl
-        ? `<img src="${item.imageUrl}" alt="${item.title}" class="max-h-[440px] w-auto object-contain" />`
-        : `<div class="w-full h-72 sm:h-80">${item.svgArt}</div>`;
-
-      document.getElementById('lb-category').textContent = item.categoryLabel;
-      document.getElementById('lb-title').textContent = item.title;
-      document.getElementById('lb-desc').textContent = item.desc;
-
-      const lb = document.getElementById('lightbox-modal');
-      lb.classList.remove('hidden');
-      lb.classList.add('flex');
-    }
-
-    function closeLightbox() {
-      const lb = document.getElementById('lightbox-modal');
-      lb.classList.add('hidden');
-      lb.classList.remove('flex');
-    }
-
-    // Cerrar modales con tecla Escape o clic fuera
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeServiceModal();
-        closeLightbox();
-      }
-    });
-    document.getElementById('service-modal').addEventListener('click', (e) => {
-      if (e.target.id === 'service-modal') closeServiceModal();
-    });
-    document.getElementById('lightbox-modal').addEventListener('click', (e) => {
-      if (e.target.id === 'lightbox-modal') closeLightbox();
-    });
-
-    // 7. Selector de Perfil y Formulario de Contacto
-    const profilePlaceholders = {
-      'Productor/a de café': {
-        orgLabel: 'Nombre de tu finca o distrito en Naranjo',
-        orgPlaceholder: 'Ej. Finca La Esperanza, San Juan de Naranjo',
-        msgPlaceholder: 'Me gustaría participar en las visitas finca por finca y aprender sobre elaboración de bioinsumos...'
-      },
-      'Institución / Aliado': {
-        orgLabel: 'Institución, organización o empresa',
-        orgPlaceholder: 'Ej. Cooperación Técnica / Universidad / Centro de Investigación',
-        msgPlaceholder: 'Nos interesa explorar una alianza o proyecto conjunto con NARECAFÉ en Naranjo...'
-      },
-      'Interesado/a en café regenerativo': {
-        orgLabel: 'Empresa, cafetería o ciudad (opcional)',
-        orgPlaceholder: 'Ej. Tostaduría / Consumidor en Costa Rica',
-        msgPlaceholder: 'Quisiera conocer más sobre el café regenerativo que producen las fincas asociadas...'
-      }
-    };
-
-    document.querySelectorAll('.profile-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const profile = btn.dataset.profile;
-        document.getElementById('selected-profile').value = profile;
-
-        document.querySelectorAll('.profile-btn').forEach(b => {
-          b.classList.remove('active', 'border-nare-green', 'bg-nare-green/10');
-          b.classList.add('border-slate-200', 'bg-white');
-        });
-        btn.classList.add('active', 'border-nare-green', 'bg-nare-green/10');
-        btn.classList.remove('border-slate-200', 'bg-white');
-
-        const cfg = profilePlaceholders[profile];
-        if (cfg) {
-          document.getElementById('org-label').textContent = cfg.orgLabel;
-          document.getElementById('contact-org').placeholder = cfg.orgPlaceholder;
-          document.getElementById('contact-message').placeholder = cfg.msgPlaceholder;
+          `;
         }
-      });
-    });
-
-    const contactForm = document.getElementById('contact-form');
-    const statusBox = document.getElementById('form-status-box');
-
-    function showStatus(type, message) {
-      statusBox.classList.remove('hidden', 'bg-red-50', 'text-red-800', 'border-red-200', 'bg-nare-green/10', 'text-nare-dark', 'border-nare-green/30');
-      statusBox.classList.add('border');
-      if (type === 'error') {
-        statusBox.classList.add('bg-red-50', 'text-red-800', 'border-red-200');
-      } else {
-        statusBox.classList.add('bg-nare-green/10', 'text-nare-dark', 'border-nare-green/30');
-      }
-      statusBox.textContent = message;
-    }
-
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('contact-name').value.trim();
-      const email = document.getElementById('contact-email').value.trim();
-      const message = document.getElementById('contact-message').value.trim();
-      const profile = document.getElementById('selected-profile').value;
-
-      if (!name || !email || !message) {
-        showStatus('error', 'Por favor completa tu nombre, correo electrónico y mensaje para que podamos responderte.');
-        return;
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        showStatus('error', 'Por favor ingresa un correo electrónico válido.');
-        return;
-      }
-
-      showStatus('success', `¡Gracias, ${name}! Hemos registrado tu consulta como "${profile}". Muy pronto nos pondremos en contacto contigo desde NARECAFÉ (narecafe@gmail.com).`);
-      contactForm.reset();
-    });
-
-    document.getElementById('open-mailto-btn').addEventListener('click', () => {
-      const name = document.getElementById('contact-name').value.trim() || 'Consulta desde web';
-      const profile = document.getElementById('selected-profile').value;
-      const org = document.getElementById('contact-org').value.trim();
-      const msg = document.getElementById('contact-message').value.trim();
-
-      const subject = encodeURIComponent(`[Web NARECAFÉ] ${profile} - ${name}`);
-      const body = encodeURIComponent(`Perfil: ${profile}\nNombre: ${name}\nFinca/Organización: ${org || 'No especificada'}\n\nMensaje:\n${msg}`);
-      window.location.href = `mailto:narecafe@gmail.com?subject=${subject}&body=${body}`;
-    });
-  </script>
-</body>
-</html>
+        selectTimeline(0);
+  
+        // 5. Modal de Servicios / Pilares
+        const servicesDetail = [
+          {
+            badge: 'Pilar 01 · Suelo Vivo',
+            title: 'Suelo Vivo y Microbiología en Finca',
+            desc: 'El suelo es el corazón de la finca cafetalera. En NARECAFÉ promovemos la regeneración biológica del suelo mediante insumos elaborados con recursos locales.',
+            items: [
+              'Recolección y activación de Microorganismos de Montaña (MM sólidos y líquidos).',
+              'Elaboración de biofertilizantes enriquecidos con minerales para nutrición foliar y edáfica.',
+              'Coberturas vegetales vivas y manejo de rastrojos para evitar la erosión en laderas de Naranjo.',
+              'Monitoreo visual y práctico de estructura, humedad y actividad biológica del suelo.'
+            ]
+          },
+          {
+            badge: 'Pilar 02 · Biodiversidad',
+            title: 'Café Bajo Sombra y Corredores Biológicos',
+            desc: 'Integramos árboles de sombra diversificados que protegen el cafetal frente a extremos climáticos y convierten cada finca en un refugio de vida.',
+            items: [
+              'Selección y poda estratégica de árboles de sombra nativa y especies de servicio.',
+              'Protección de polinizadores clave como el colibrí y abejas nativas.',
+              'Conservación de microcuencas y zonas de recarga hídrica en fincas cafetaleras.',
+              'Secuestro de carbono y regulación térmica del microclima del cafetal.'
+            ]
+          },
+          {
+            badge: 'Pilar 03 · Comunidad de Práctica',
+            title: 'Escuela de Campo e Intercambio Finca por Finca',
+            desc: 'Nuestro aprendizaje es horizontal: cada finca es un laboratorio vivo donde compartimos aciertos, aprendizajes y métricas reales.',
+            items: [
+              'Visitas periódicas entre fincas asociadas para evaluar prácticas en terreno.',
+              'Talleres prácticos abiertos a caficultores de Naranjo y cantones vecinos.',
+              'Planificación de transición gradual cuidando la rentabilidad y flujo de caja familiar.',
+              'Registro fotográfico y técnico continuo de la evolución de los lotes.'
+            ]
+          },
+          {
+            badge: 'Pilar 04 · Alianzas',
+            title: 'Alianzas Institucionales y Trazabilidad Regenerativa',
+            desc: 'Construimos puentes entre las familias productoras y organizaciones que buscan impulsar una caficultura con impacto positivo medible.',
+            items: [
+              'Articulación con cooperación internacional, academia e instituciones agropecuarias.',
+              'Documentación de prácticas regenerativas para mercados diferenciados.',
+              'Visitas técnicas guiadas para aliados, investigadores y tostadores interesados.',
+              'Construcción colectiva de propuestas de desarrollo rural sostenible.'
+            ]
+          }
+        ];
+  
+        function openServiceModal(idx) {
+          const s = servicesDetail[idx];
+          document.getElementById('modal-badge').textContent = s.badge;
+          document.getElementById('modal-title').textContent = s.title;
+          document.getElementById('modal-desc').textContent = s.desc;
+          document.getElementById('modal-list').innerHTML = s.items.map(item => `
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-nare-green/15 text-nare-green flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>${item}</span>
+            </li>
+          `).join('');
+  
+          const modal = document.getElementById('service-modal');
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        }
+  
+        function closeServiceModal() {
+          const modal = document.getElementById('service-modal');
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }
+  
+        // 6. Galería con las FOTOS REALES de tu galería de Postimages + Lightbox
+        const editorialGalleryItems = [
+          {
+            id: 'gal-1',
+            category: 'suelo',
+            categoryLabel: 'Suelo Vivo y Bioinsumos',
+            title: 'Prácticas de Suelo y Bioinsumos en Finca',
+            desc: 'Registro fotográfico de las labores regenerativas aplicadas en las fincas asociadas de Naranjo.',
+            imageUrl: 'https://i.postimg.cc/FzBsqkMp/web-2robles-naranjo-priscillamora012.jpg' // Reemplaza con tu enlace de Postimages
+          },
+          {
+            id: 'gal-2',
+            category: 'sombra',
+            categoryLabel: 'Café Bajo Sombra',
+            title: 'Sistema Agroforestal y Cobertura',
+            desc: 'Manejo de sombra y biodiversidad en los cafetales de altura.',
+            imageUrl: 'https://i.postimg.cc/KjHvV36J/web-2robles-naranjo-priscillamora074.jpg' // Reemplaza con tu enlace de Postimages
+          },
+          {
+            id: 'gal-3',
+            category: 'escuela',
+            categoryLabel: 'Escuela de Campo',
+            title: 'Sesiones de Trabajo Colectivo',
+            desc: 'Aprendizaje práctico y participación activa de los productores.',
+            imageUrl: 'https://i.postimg.cc/FzBsqkMG/web-2robles-naranjo-priscillamora076.jpg' // Reemplaza con tu enlace de Postimages
+          },
+          {
+            id: 'gal-4',
+            category: 'fincas',
+            categoryLabel: 'Fincas de Naranjo',
+            title: 'Paisaje Cafetalero en Naranjo',
+            desc: 'Vista panorámica de las parcelas productivas en transición regenerativa.',
+            imageUrl: 'https://i.postimg.cc/0jB23KTV/web-2robles-naranjo-priscillamora078.jpg' // Reemplaza con tu enlace de Postimages
+          }
+        ];
+  
+        let uploadedGalleryItems = [];
+        let currentFilter = 'todos';
+  
+        function renderGallery() {
+          const grid = document.getElementById('gallery-grid');
+          const allItems = [...uploadedGalleryItems, ...editorialGalleryItems];
+          const filtered = currentFilter === 'todos'
+            ? allItems
+            : allItems.filter(item => item.category === currentFilter);
+  
+          grid.innerHTML = filtered.map((item) => `
+            <article onclick="openLightbox('${item.id}')" class="group cursor-pointer bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-md hover:border-nare-blue/40 transition-all flex flex-col">
+              <div class="relative h-52 w-full overflow-hidden bg-nare-offwhite">
+                <img src="${item.imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <span class="absolute top-3.5 left-3.5 text-[11px] font-bold px-3 py-1 rounded-full bg-white/95 text-nare-dark shadow-sm">
+                  ${item.categoryLabel}
+                </span>
+                <span class="absolute bottom-3 right-3 w-8 h-8 rounded-full bg-nare-dark/75 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                </span>
+              </div>
+              <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 class="font-slab font-bold text-lg text-nare-dark group-hover:text-nare-blue transition">${item.title}</h3>
+                  <p class="text-sm text-nare-slate font-light mt-2 leading-relaxed line-clamp-3">${item.desc}</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-nare-slate">
+                  <span>Naranjo, Alajuela</span>
+                  <span class="font-medium text-nare-green">Ampliar ficha →</span>
+                </div>
+              </div>
+            </article>
+          `).join('');
+        }
+        renderGallery();
+  
+        // Filtros de galería
+        document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            currentFilter = btn.dataset.filter;
+            document.querySelectorAll('.gallery-filter-btn').forEach(b => {
+              b.classList.remove('bg-nare-blue', 'text-white', 'shadow-sm');
+              b.classList.add('bg-white', 'text-nare-dark', 'border', 'border-slate-200');
+            });
+            btn.classList.add('bg-nare-blue', 'text-white', 'shadow-sm');
+            btn.classList.remove('bg-white', 'text-nare-dark', 'border', 'border-slate-200');
+            renderGallery();
+          });
+        });
+  
+        // Carga local de vista previa de fotos
+        const photoInput = document.getElementById('photo-upload-input');
+        photoInput.addEventListener('change', (e) => {
+          const files = Array.from(e.target.files || []);
+          if (!files.length) return;
+  
+          files.forEach((file, i) => {
+            const objectUrl = URL.createObjectURL(file);
+            uploadedGalleryItems.unshift({
+              id: `uploaded-${Date.now()}-${i}`,
+              category: currentFilter === 'todos' ? 'fincas' : currentFilter,
+              categoryLabel: 'Vista previa local',
+              title: file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
+              desc: 'Fotografía cargada en modo vista previa desde el dispositivo del equipo NARECAFÉ.',
+              imageUrl: objectUrl
+            });
+          });
+  
+          const feedback = document.getElementById('upload-feedback');
+          document.getElementById('upload-feedback-text').textContent = `Se agregaron ${files.length} fotografía(s) en modo vista previa local a la galería.`;
+          feedback.classList.remove('hidden');
+          renderGallery();
+        });
+  
+        function resetUploadedPhotos() {
+          uploadedGalleryItems.forEach(item => {
+            if (item.imageUrl) URL.revokeObjectURL(item.imageUrl);
+          });
+          uploadedGalleryItems = [];
+          photoInput.value = '';
+          document.getElementById('upload-feedback').classList.add('hidden');
+          renderGallery();
+        }
+  
+        // Lightbox
+        function openLightbox(itemId) {
+          const allItems = [...uploadedGalleryItems, ...editorialGalleryItems];
+          const item = allItems.find(i => i.id === itemId);
+          if (!item) return;
+  
+          const visualBox = document.getElementById('lb-visual');
+          visualBox.innerHTML = `<img src="${item.imageUrl}" alt="${item.title}" class="max-h-[440px] w-auto object-contain" />`;
+  
+          document.getElementById('lb-category').textContent = item.categoryLabel;
+          document.getElementById('lb-title').textContent = item.title;
+          document.getElementById('lb-desc').textContent = item.desc;
+  
+          const lb = document.getElementById('lightbox-modal');
+          lb.classList.remove('hidden');
+          lb.classList.add('flex');
+        }
+  
+        function closeLightbox() {
+          const lb = document.getElementById('lightbox-modal');
+          lb.classList.add('hidden');
+          lb.classList.remove('flex');
+        }
+  
+        // Cerrar modales con tecla Escape o clic fuera
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            closeServiceModal();
+            closeLightbox();
+          }
+        });
+        document.getElementById('service-modal').addEventListener('click', (e) => {
+          if (e.target.id === 'service-modal') closeServiceModal();
+        });
+        document.getElementById('lightbox-modal').addEventListener('click', (e) => {
+          if (e.target.id === 'lightbox-modal') closeLightbox();
+        });
+  
+        // 7. Selector de Perfil y Formulario de Contacto
+        const profilePlaceholders = {
+          'Productor/a de café': {
+            orgLabel: 'Nombre de tu finca o distrito en Naranjo',
+            orgPlaceholder: 'Ej. Finca La Esperanza, San Juan de Naranjo',
+            msgPlaceholder: 'Me gustaría participar en las visitas finca por finca y aprender sobre elaboración de bioinsumos...'
+          },
+          'Institución / Aliado': {
+            orgLabel: 'Institución, organización o empresa',
+            orgPlaceholder: 'Ej. Cooperación Técnica / Universidad / Centro de Investigación',
+            msgPlaceholder: 'Nos interesa explorar una alianza o proyecto conjunto con NARECAFÉ en Naranjo...'
+          },
+          'Interesado/a en café regenerativo': {
+            orgLabel: 'Empresa, cafetería o ciudad (opcional)',
+            orgPlaceholder: 'Ej. Tostaduría / Consumidor en Costa Rica',
+            msgPlaceholder: 'Quisiera conocer más sobre el café regenerativo que producen las fincas asociadas...'
+          }
+        };
+  
+        document.querySelectorAll('.profile-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const profile = btn.dataset.profile;
+            document.getElementById('selected-profile').value = profile;
+  
+            document.querySelectorAll('.profile-btn').forEach(b => {
+              b.classList.remove('active', 'border-nare-green', 'bg-nare-green/10');
+              b.classList.add('border-slate-200', 'bg-white');
+            });
+            btn.classList.add('active', 'border-nare-green', 'bg-nare-green/10');
+            btn.classList.remove('border-slate-200', 'bg-white');
+  
+            const cfg = profilePlaceholders[profile];
+            if (cfg) {
+              document.getElementById('org-label').textContent = cfg.orgLabel;
+              document.getElementById('contact-org').placeholder = cfg.orgPlaceholder;
+              document.getElementById('contact-message').placeholder = cfg.msgPlaceholder;
+            }
+          });
+        });
+  
+        const contactForm = document.getElementById('contact-form');
+        const statusBox = document.getElementById('form-status-box');
+  
+        function showStatus(type, message) {
+          statusBox.classList.remove('hidden', 'bg-red-50', 'text-red-800', 'border-red-200', 'bg-nare-green/10', 'text-nare-dark', 'border-nare-green/30');
+          statusBox.classList.add('border');
+          if (type === 'error') {
+            statusBox.classList.add('bg-red-50', 'text-red-800', 'border-red-200');
+          } else {
+            statusBox.classList.add('bg-nare-green/10', 'text-nare-dark', 'border-nare-green/30');
+          }
+          statusBox.textContent = message;
+        }
+  
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('contact-name').value.trim();
+          const email = document.getElementById('contact-email').value.trim();
+          const message = document.getElementById('contact-message').value.trim();
+          const profile = document.getElementById('selected-profile').value;
+  
+          if (!name || !email || !message) {
+            showStatus('error', 'Por favor completa tu nombre, correo electrónico y mensaje para que podamos responderte.');
+            return;
+          }
+  
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            showStatus('error', 'Por favor ingresa un correo electrónico válido.');
+            return;
+          }
+  
+          showStatus('success', `¡Gracias, ${name}! Hemos registrado tu consulta como "${profile}". Muy pronto nos pondremos en contacto contigo desde NARECAFÉ (narecafe@gmail.com).`);
+          contactForm.reset();
+        });
+  
+        document.getElementById('open-mailto-btn').addEventListener('click', () => {
+          const name = document.getElementById('contact-name').value.trim() || 'Consulta desde web';
+          const profile = document.getElementById('selected-profile').value;
+          const org = document.getElementById('contact-org').value.trim();
+          const msg = document.getElementById('contact-message').value.trim();
+  
+          const subject = encodeURIComponent(`[Web NARECAFÉ] ${profile} - ${name}`);
+          const body = encodeURIComponent(`Perfil: ${profile}\nNombre: ${name}\nFinca/Organización: ${org || 'No especificada'}\n\nMensaje:\n${msg}`);
+          window.location.href = `mailto:narecafe@gmail.com?subject=${subject}&body=${body}`;
+        });
+      </script>
